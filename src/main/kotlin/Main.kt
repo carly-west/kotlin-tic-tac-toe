@@ -1,7 +1,23 @@
 fun main(args: Array<String>) {
-    println("Hello World!")
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+    var continuePlaying = true
+    val board = Board()
+    board.printBlankBoard()
+
+    while (continuePlaying) {
+        with(board) {
+            displayCurrentBoard()
+            getUserMove()
+            saveToBoard()
+            changeCurrentPlayer()
+        }
+
+        var winner: Char = board.isGameDone()
+        if (winner == 'X' || winner == 'O') {
+            println("$winner wins!!!")
+            continuePlaying = false
+            board.displayCurrentBoard()
+        }
+    }
 }
+
